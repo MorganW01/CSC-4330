@@ -6,8 +6,6 @@ public class LexicalAnalyzer {
     static int charClass;
     static StringBuilder lexeme = new StringBuilder();
     static int nextChar;
-    static int lexLen;
-    static int token;
     static int nextToken;
     static FileReader fr;
 
