@@ -1,1 +1,1 @@
-[lexicalanalyzer]
+[UNICORN appl^e = 7]
