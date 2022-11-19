@@ -3,6 +3,7 @@ import java.io.IOException;
 
 public class LexicalAnalyzer {
 
+    //VARIABLES
     static int charClass;
     static StringBuilder lexeme = new StringBuilder();
     static int nextChar;
@@ -36,9 +37,10 @@ public class LexicalAnalyzer {
 
 
     public static void main(String[] args) throws IOException {
-
+        //creates file reader
         fr = new FileReader("/Users/morganwarren/Desktop/GitHub/CSC-4330/Exam2/language.txt");
         getChar();
+        //do while loop that runs the lexical analyzer while the
         do{
             lex();
         }
@@ -56,32 +58,29 @@ public class LexicalAnalyzer {
                 charClass = LETTERS;
 
             }
+            //checks if the character is a digit
             else if (Character.isDigit(nextChar)){
                 charClass = DIGITS;
             }
 
+            //checks if the character is a neither a digit or alphabetical
             else {
                 charClass = UNKNOWN;
             }
 
         }
+        //checks if location is at the end of the file
         else {
             charClass = EOF;
         }
     }
 
-    /*
-    * keywords:
-    *
-    *
-    *
-    *
-    * */
-
+    //lexical method
     public static int lex() throws IOException {
-        //System.out.println(charClass);
         lexeme.setLength(0);
+        //checks for whitespaces
         getNonBlank();
+        //switch ca
         switch (charClass){
             case LETTERS:
                 addChar();
