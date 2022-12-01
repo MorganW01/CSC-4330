@@ -123,7 +123,7 @@ public class LexicalAnalyzer {
                 break;
 
         }
-        System.out.println("Next Token = " + nextToken + ", Next Lexeme = " + lexeme);
+        System.out.println("Token = " + nextToken + ", Lexeme = " + lexeme);
         return nextToken;
     }
 
