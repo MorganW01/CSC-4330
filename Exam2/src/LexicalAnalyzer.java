@@ -35,8 +35,8 @@ public class LexicalAnalyzer {
     final static int EQUAL = 19; // '='
     final static int NOT = 20; // '!'
     final static int IDENTIFIER = 24;
-    final static int START = 22; // '['
-    final static int END = 23; // ']'
+    final static int START_PROGRAM = 22; // '['
+    final static int END_PROGRAM = 23; // ']'
     final static int INT_LIT = 25;
     final static int LEFT_PAREN = 26; // '('
     final static int RIGHT_PAREN = 27; // ')'
@@ -199,11 +199,11 @@ public class LexicalAnalyzer {
                 break;
             case '[': //start
                 addChar();
-                nextToken = START;
+                nextToken = START_PROGRAM;
                 break;
             case ']': //end
                 addChar();
-                nextToken = END;
+                nextToken = END_PROGRAM;
                 break;
             case '=':
                 addChar();

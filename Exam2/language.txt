@@ -1,1 +1,1 @@
-[i apple >= 7;]
+[i apple = 7;]
