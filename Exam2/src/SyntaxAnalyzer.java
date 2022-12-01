@@ -1,4 +1,4 @@
-public class SyntaxAnalyzer {
+public class SyntaxAnalyzer extends LexicalAnalyzer {
 
     /*
     * array of tokens
@@ -11,6 +11,14 @@ public class SyntaxAnalyzer {
     * what tokens are allowed to come before and after particular tokens
     *
     * */
+
+
+    public static void main (String [] args){
+
+
+
+
+    }
 
 
 

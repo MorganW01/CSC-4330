@@ -1,7 +1,13 @@
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
+// ADD COMMENTS!!!!!!!!!
 public class LexicalAnalyzer {
+
+    //Array list containing all of the tokens
+    static ArrayList<Integer> tokensList = new ArrayList<Integer>();
+
 
     //VARIABLES
     static int charClass;
@@ -43,9 +49,12 @@ public class LexicalAnalyzer {
         //do while loop that runs the lexical analyzer while the
         do{
             lex();
+            createTokensList(); //might have to delete this
+
         }
         while (charClass != EOF);
 
+        System.out.println("List of tokens: "+tokensList);
     }
 
     public static void getChar() throws IOException {
@@ -138,6 +147,12 @@ public class LexicalAnalyzer {
         }
     }
 
+    public static void createTokensList(){
+        tokensList.add(nextToken);
+    }
+
+
+
     public static int lookup (char c) {
         switch (c){
             case '(':
@@ -211,6 +226,3 @@ public class LexicalAnalyzer {
 
 
 }
-
-// ADD COMMENTS!!!!!!!!!
-
