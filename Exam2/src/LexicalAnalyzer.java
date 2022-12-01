@@ -47,7 +47,7 @@ public class LexicalAnalyzer {
     final static int ELSE_IF = 31; // "@'
     final static int WHILE = 32; // '$'
 
-    //test token to represent tokens with more than one character.
+    //test token to represent tokens with more than one character; disregard;
     final static int UNICORN = 33; // 'UNICORN'
 
     //Main 'driver' method.
@@ -113,7 +113,7 @@ public class LexicalAnalyzer {
                     getChar();
                 }
                 switch(lexeme.toString()){
-                    //test case for keyword longer than one char.
+                    //testing purposes; disregard
                     case "UNICORN":
                         nextToken = UNICORN;
                         break;
