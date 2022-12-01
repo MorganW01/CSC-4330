@@ -30,6 +30,8 @@ public class LexicalAnalyzer {
     final static int MODULUS = 14; // '%'
     final static int LESS_THAN = 15; // '<'
     final static int GREATER_THAN = 16; // '>'
+    final static int LESS_EQ = 17; // '~'
+    final static int GREATER_EQ = 18; // '?'
     final static int EQUAL = 19; // '='
     final static int NOT = 20; // '!'
     final static int IDENTIFIER = 24;
@@ -115,6 +117,7 @@ public class LexicalAnalyzer {
                     case "UNICORN":
                         nextToken = UNICORN;
                         break;
+
                     default: //any word that is not a keyword is by default an identifier.
                         nextToken = IDENTIFIER;
                 }
@@ -225,6 +228,14 @@ public class LexicalAnalyzer {
             case ';':
                 addChar();
                 nextToken = END_LINE;
+                break;
+            case '~': //less than or equal to
+                addChar();
+                nextToken = LESS_EQ;
+                break;
+            case '?': //greater than or equal to
+                addChar();
+                nextToken = GREATER_EQ;
                 break;
             case '^':
                 addChar();
