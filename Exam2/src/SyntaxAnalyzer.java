@@ -1,4 +1,4 @@
-public class SyntaxAnalyzer extends LexicalAnalyzer {
+public class SyntaxAnalyzer {
 
     /*
     * array of tokens

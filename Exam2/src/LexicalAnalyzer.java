@@ -64,8 +64,9 @@ public class LexicalAnalyzer {
         }
         while (charType != EOF);
 
-        //prints out the list of tokens
+        //prints ArrayList of tokens.
         System.out.println("List of tokens: "+tokensList);
+
     }
 
     //function that gets each character in the file and detects what type of char it is.
@@ -102,9 +103,9 @@ public class LexicalAnalyzer {
         lexeme.setLength(0);
         //checks for and removed whitespaces, if there are any.
         removeWhitespace();
-        //switch ca
+        //switch case for letters, digits and unknown characters.
         switch (charType){
-            //switch case that handles letters
+            //switch case that handles letters.
             case LETTERS:
                 addChar();
                 getChar();
@@ -112,6 +113,7 @@ public class LexicalAnalyzer {
                     addChar();
                     getChar();
                 }
+
                 switch(lexeme.toString()){
                     //testing purposes; disregard
                     case "UNICORN":
@@ -121,6 +123,7 @@ public class LexicalAnalyzer {
                     default: //any word that is not a keyword is by default an identifier.
                         nextToken = IDENTIFIER;
                 }
+
                 break;
             //switch case that handles digits
             case DIGITS:
@@ -149,6 +152,7 @@ public class LexicalAnalyzer {
         //prints out statement that lists the token and the lexeme.
         System.out.println("Token = " + nextToken + ", Lexeme = " + lexeme);
         return nextToken;
+
     }
 
     //function that adds characters to the lexeme StringBuilder
@@ -201,10 +205,6 @@ public class LexicalAnalyzer {
                 addChar();
                 nextToken = START_PROGRAM;
                 break;
-            case ']': //end
-                addChar();
-                nextToken = END_PROGRAM;
-                break;
             case '=':
                 addChar();
                 nextToken = EQUAL;
@@ -253,8 +253,11 @@ public class LexicalAnalyzer {
                 addChar();
                 nextToken = WHILE;
                 break;
-
-            default: //handles invalid groups of characters.
+            case ']': //end
+                addChar();
+                nextToken = END_PROGRAM;
+                break;
+            default: //handles invalid groups of characters. The assertion error terminates the program.
                 throw new AssertionError("invalid expression");
         }
 
