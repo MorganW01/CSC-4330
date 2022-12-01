@@ -98,7 +98,7 @@ public class LexicalAnalyzer {
     public static int lex() throws IOException {
         lexeme.setLength(0);
         //checks for whitespaces
-        getNonBlank();
+        removeWhitespace();
         //switch ca
         switch (charType){
             case LETTERS:
@@ -149,7 +149,7 @@ public class LexicalAnalyzer {
         lexeme.append((char) nextChar);
     }
 
-    public static void getNonBlank() throws IOException {
+    public static void removeWhitespace() throws IOException {
         while (Character.isWhitespace(nextChar)){
             getChar();
         }
@@ -224,7 +224,7 @@ public class LexicalAnalyzer {
                 addChar();
                 nextToken = END_LINE;
                 break;
-                
+
             case '^':
                 addChar();
                 nextToken = IF;
@@ -235,12 +235,10 @@ public class LexicalAnalyzer {
                 nextToken = ELSE;
                 break;
 
-
             case '@':
                 addChar();
                 nextToken = ELSE_IF;
                 break;
-
 
             case '$':
                 addChar();
@@ -253,6 +251,5 @@ public class LexicalAnalyzer {
 
         return 0;
     }
-
 
 }
