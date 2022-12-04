@@ -1,3 +1,6 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class SyntaxAnalyzer {
 
     /*
@@ -14,6 +17,11 @@ public class SyntaxAnalyzer {
 
 
     public static void main (String [] args) {
+        LexicalAnalyzer.createTokensList();
+
+        ArrayList arrayList = LexicalAnalyzer.tokensList;
+
+        System.out.println(arrayList);
 
 
 
