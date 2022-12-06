@@ -17,13 +17,15 @@ Modulus %
 
 Less than <
 
-Less than or equal to ~
+Less than or equal to ~ 
 
 Greater than >
 
 Greater than or equal to ?
 
 Equal =
+
+*Integer Literal 
 
 Not (Equal to) !
 
@@ -74,19 +76,21 @@ Start Program 22
 
 End Program 23
 
+Integer Literal 25
+
 Left Parenthesis 26
 
 Right Parenthesis 27
 
 End Line 28
 
-IF 29
+IF '^' 29
 
-ELSE 30
+ELSE '#' 30
 
-ELSE IF 31
+ELSE IF '@' 31
 
-WHILE 32
+WHILE '$' 32
 
 Variable name rules: 
 [a-zA-Z_][a-zA-Z_][a-zA-Z_][a-zA-Z_][a-zA-Z_][a-zA-Z_][a-zA-Z_]?[a-zA-Z_]?
@@ -97,26 +101,32 @@ Enforce a non PEMDAS (BODMAS) order of operation, must have at least 6 levels of
 Keywords cannot use the words while, for, do, if, int, short, long
  i. Keywords should be unique, if others share your same words, you may lose more points than this problem is worth
 You must clearly state the structure of your language with production rules
-<program> --> ‘[’<stmt_list>’]’ 
-<stmt_list> --> <stmt> ; {<stmt>;} 
-<stmt> --> <if_stmt> 
-<stmt> --><while_loop>
- <stmt> --> <assignment> 
-<stmt> --> <block> 
-<stmt> --> <declare> 
-<declare> --> vari id ; 
-<block> --> {<stmt>} 
-<if_stmt> --> $ (<bool_expr> ) <stmt> & <stmt> 
-<while_loop> --> ROF ( <bool_expr> ) <stmt> 
-<assignment> --> id = <expr> ; 
-<expr> --> <term> {(+|-)} <term> 
-<term> --> <factor> {(|/|%)} <factor> 
-<factor> --> id| int_lit| (<expr>) 
-<bool_expr> --> <rel> {(!=|==)} <rel> 
-<rel> --> <bex> {(<|>|~|^)} <bex> 
-<bex> --> <bterm> {(|/|%)} <bterm> 
-<bterm> --> <bfactor> {(+|-)} <bfactor> 
-<bfactor> --> id|int_lit|bool_lit|(<bex>)
+<program> -> ‘[’<stmt_list>’]’ 
+<stmt_list> -> <stmt> ; 
+<stmt_list> -> <stmt> ; <stmt_list>
+<stmt> -> <if_stmt> 
+<stmt> -> <while_loop>
+<stmt> -> <assignment> 
+<stmt> -> <block> 
+<stmt> -> <declare> 
+<declare> -> vari id ; 
+<block> -> `{` <stmt_list> `}` 
+<if_stmt> -> $ ( <bool_expr> ) <stmt> # <stmt> 
+<if_stmt> -> $ ( <bool_expr> ) <stmt> 
+<while_loop> -> ROF ( <bool_expr> ) <stmt> 
+<assignment> -> id = <expr> ; 
+<expr> -> <expr> - <term> 
+<expr> -> <expr> + <term> 
+<expr> -> <term> 
+<term> -> <factor> {(|/|%)} <factor> 
+<factor> -> id
+factor> -> int_lit
+factor> -> <expr> 
+<bool_expr> -> <rel> {(!=|==)} <rel> 
+<rel> -> <bex> {(<|>|~|^)} <bex> 
+<bex> -> <bterm> {(|/|%)} <bterm> 
+<bterm> -> <bfactor> {(+|-)} <bfactor> 
+<bfactor> -> id|int_lit|bool_lit|(<bex>)
 c. (10 points) Show whether every rule set in your language conforms to the standard of an LL Grammar.	
 
 Pairwise disjoint grammar is the grammar for my language. This is my language’s grammar because for all my rules, there isn’t a nonterminal that has multiple rules for one terminal. Also because there are no rules that result in a left hand recursion, where a nonterminal calls itself as the first char.
@@ -145,6 +155,7 @@ Detail each error and say why it doesn’t work
 Detail each error and say why it doesn’t work
 
 2 with no errors at all based on the language you created
+	
 	test1.txt and test2.txt
 
 

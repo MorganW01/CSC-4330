@@ -84,7 +84,6 @@ public class LexicalAnalyzer {
             else if (Character.isDigit(nextChar)){
                 charType = DIGITS;
             }
-
             //checks if the character is a neither a digit or alphabetical
             else {
                 charType = UNKNOWN;
@@ -171,7 +170,7 @@ public class LexicalAnalyzer {
     public static void createTokensList(){
         //adds tokens to the ArrayList
         tokensList.add(nextToken);
-        System.out.println(tokensList);
+        //System.out.println(tokensList);
     }
 
     //Function that looks up all of the symbols passed from the file and assigns them a token value.
