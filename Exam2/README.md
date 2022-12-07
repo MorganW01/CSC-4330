@@ -127,7 +127,7 @@ You must clearly state the structure of your language with production rules
     <expr> -> <term> {(`*`|`/`|`%`) <term> }
     <term> ->  <factor> {(`+`|`-`) <factor> }
     <factor> -> `id`| `int_lit`| `(`<expr>`)`
-    <bool_expr> -> <rel> {(`!`|`=`)} <rel>
+    <bool_expr> -> <rel> {(`!`|`&`)} <rel>
     <rel> -> <bex> {(`<`|`>`|`~`|`?`) <bex> }
     <bex> -> <bterm> {(`*`|`/`|`%`) <bterm> }
     <bterm> -> <bfactor> {(`+`|`-`) <bfactor>}
