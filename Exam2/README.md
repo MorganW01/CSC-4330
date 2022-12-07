@@ -153,7 +153,7 @@ Detail each error and say why it doe not work
 test1.txt
 
 errors: 
-1. variable name 'apple' is too short
+1. variable name 'apple' is too short. This would be the first error the lexical analyzer catches and it will end the program
 2. with .robust, the '.' symbol is not in my language, and cannot be used when naming variables.
 3. the word 'print' is too short and is not a keyword or variable name.
 4. the '`' symbol is not a keyword in my language

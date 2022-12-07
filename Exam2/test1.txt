@@ -1,4 +1,4 @@
-[5 = apple;
+[apple = 5;
     .robust = 11;
     ^ (.robust ? apple)
            print .robust;
