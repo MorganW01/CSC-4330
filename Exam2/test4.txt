@@ -1,1 +1,5 @@
-[b station = 3;]
+[num_int station = 3;
+
+^ station
+
+]
