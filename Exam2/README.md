@@ -48,7 +48,7 @@ ELSE IF '@'
 WHILE '$'
 
 
-Token Token Value (Numeric)
+Token & Token Value (Numeric)
 
 Addition 10
 
@@ -149,14 +149,23 @@ SyntaxAnalyzer.java
 g. (10 points) Create 4 test files that have different names where each should have 30 or more lexemes that can be converted into tokens
 
 1 with a at least 5 lexical errors based on the rules you defined
-Detail each error and say why it doesn’t work
+Detail each error and say why it doe not work
+test1.txt
+
+errors: 
+1. variable name 'apple' is too short
+2. with .robust, the '.' symbol is not in my language, and cannot be used when naming variables.
+3. the word 'print' is too short and is not a keyword or variable name.
+4. the '`' symbol is not a keyword in my language
+5. 'hypnoticvariable' is too long to be a variable name
 
 1 with at least 5 syntax errors based on the rules you defined.
-Detail each error and say why it doesn’t work
+Detail each error and say why it does not work
+test2.txt
 
 2 with no errors at all based on the language you created
 	
-	test1.txt and test2.txt
+test3.txt and test4.txt
 
 
 

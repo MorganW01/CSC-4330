@@ -113,7 +113,7 @@ public class LexicalAnalyzer {
                     getChar();
                 }
 
-                /*switch(lexeme.toString()){
+                switch(lexeme.toString()){
                     //testing purposes
                     case "UNICORN":
                         nextToken = UNICORN;
@@ -121,7 +121,7 @@ public class LexicalAnalyzer {
 
                     default: //any word that is not a keyword is by default an identifier.
                         nextToken = IDENTIFIER;
-                }*/
+                }
 
                 //checks if variable name is too long (longer than 8 characters) then gives an error if it is
                 if (lexeme.length() > 8){

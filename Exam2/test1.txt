@@ -1,1 +1,7 @@
-[a android = 22;]
+[5 = apple;
+    .robust = 11;
+    ^ (.robust ? apple)
+           print .robust;
+           `robust is greater than apple`;
+           hypnoticvariable = .robust - apple;
+]
