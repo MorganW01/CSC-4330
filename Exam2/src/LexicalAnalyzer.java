@@ -44,8 +44,11 @@ public class LexicalAnalyzer {
     //create more tokens for if, else, while, etc.
     final static int IF = 29; // '^'
     final static int ELSE = 30; // '#'
-    final static int ELSE_IF = 31; // "@'
+    final static int ELSE_IF = 31; // '@'
     final static int WHILE = 32; // '$'
+
+    final static int OPEN_BLOCK = 34; // '{'
+    final static int CLOSE_BLOCK = 35; // '}'
 
     //test token to represent tokens with more than one character; disregard;
     final static int UNICORN = 33; // 'UNICORN'
@@ -261,6 +264,14 @@ public class LexicalAnalyzer {
             case '$':
                 addChar();
                 nextToken = WHILE;
+                break;
+            case '{':
+                addChar();
+                nextToken = OPEN_BLOCK;
+                break;
+            case '}':
+                addChar();
+                nextToken = CLOSE_BLOCK;
                 break;
             case ']': //end
                 addChar();

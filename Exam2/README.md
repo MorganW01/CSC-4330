@@ -4,7 +4,6 @@ a. (15 Points) Define the rules for recognizing all lexemes as their proper toke
 
 Regex Representation
 
-
 Addition '+'
 
 Subtraction '-'
@@ -127,6 +126,26 @@ factor> -> <expr>
 <bex> -> <bterm> {(|/|%)} <bterm> 
 <bterm> -> <bfactor> {(+|-)} <bfactor> 
 <bfactor> -> id|int_lit|bool_lit|(<bex>)
+
+
+<program> --> `[`<stmt_list>`]`
+ <stmt_list> --> <stmt> `;` {<stmt>`;`}
+ <stmt> --> <if_stmt> | <while_loop> | <assignment> |
+ <block> --> `(` { <stmt> ;} `)`
+ <if_stmt> --> `^` `(`<bool_expr> `)` <block> 
+ <for_loop> --> `&` `(` for_expr> `)` <block>
+ <for_expr> --> `int_lit` `to` `int_lit`
+ <assignment> --> `id` `=` <expr> `;`
+ <expr> --> <term> {(`*`|`/`|`%`) <term> }
+ <term> -->  <factor> {(`+`|`-`) <factor> }
+ <factor> --> `id`| `int_lit`| `(`<expr>`)`
+
+ <bool_expr> --> <rel> {(`!`|`@`)} <rel>
+ <rel> --> <bex> {(`<`|`>`|`~`|`^`) <bex> }
+ <bex> --> <bterm> {(`*`|`/`|`%`) <bterm> }
+ <bterm> --> <bfactor> {(`+`|`-`) <bfactor>}
+ <bfactor> --> `id`|`int_lit`|`(`<bex>`)
+
 c. (10 points) Show whether every rule set in your language conforms to the standard of an LL Grammar.	
 
 Pairwise disjoint grammar is the grammar for my language. This is my language’s grammar because for all my rules, there isn’t a nonterminal that has multiple rules for one terminal. Also because there are no rules that result in a left hand recursion, where a nonterminal calls itself as the first char.
@@ -152,7 +171,7 @@ g. (10 points) Create 4 test files that have different names where each should h
 Detail each error and say why it doe not work
 test1.txt
 
-errors: 
+Errors: 
 1. variable name 'apple' is too short. This would be the first error the lexical analyzer catches and it will end the program
 2. with .robust, the '.' symbol is not in my language, and cannot be used when naming variables.
 3. the word 'print' is too short and is not a keyword or variable name.
@@ -163,11 +182,16 @@ errors:
 Detail each error and say why it does not work
 test2.txt
 
+Errors:
+1.
+2.
+3.
+4.
+5.
+
 2 with no errors at all based on the language you created
 	
 test3.txt and test4.txt
-
-
 
 
 h. (20 points) Create a LR (1) parse table for your language. And show the trace of 4 code samples. Each must have 6 or more tokens.				
