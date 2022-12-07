@@ -185,5 +185,9 @@ Table must be provided, and the rules must be listed
 2 code samples must have errors
 Show were these samples fail and pass the test 
 
+PART H Code Samples 1 & 2 - Samples that PASS the test
+PART H Code Samples 3 & 4 - Samples that FAIL the test
+PART H - Grammar & FIRST table - provided table w/ rules listed
+
 
 
