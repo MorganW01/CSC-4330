@@ -5,50 +5,50 @@ a. (15 Points) Define the rules for recognizing all lexemes as their proper toke
 Regex Representation
 
 
-Addition +
+Addition '+'
 
-Subtraction -
+Subtraction '-'
 
-Division /
+Division '/'
 
-Multiplication *
+Multiplication '*'
 
-Modulus %
+Modulus '%'
 
-Less than <
+Less than '<'
 
-Less than or equal to ~ 
+Less than or equal to '~' 
 
-Greater than >
+Greater than '>'
 
-Greater than or equal to ?
+Greater than or equal to '?'
 
-Equal =
+Equal '='
 
-*Integer Literal 
+Integer Literal '[0-9]+'
 
-Not (Equal to) !
+Not (Equal to) '!'
 
-Start Program [
+Start Program '['
 
-End Program ]
+End Program ']'
 
-Left Parenthesis (
+Left Parenthesis '('
 
-Right Parenthesis )
+Right Parenthesis ')'
 
-End Line ;
+End Line ';'
 
-IF ^
-ELSE #
+IF '^'
 
-ELSE IF @
+ELSE '#'
 
-WHILE $
+ELSE IF '@'
+
+WHILE '$'
 
 
-Token
-Token Value (Numeric)
+Token Token Value (Numeric)
 
 Addition 10
 
@@ -165,3 +165,6 @@ h. (20 points) Create a LR (1) parse table for your language. And show the trace
 Table must be provided, and the rules must be listed
 2 code samples must have errors
 Show were these samples fail and pass the test 
+
+
+

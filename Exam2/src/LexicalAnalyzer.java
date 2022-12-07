@@ -113,17 +113,26 @@ public class LexicalAnalyzer {
                     getChar();
                 }
 
-                switch(lexeme.toString()){
-                    //testing purposes; disregard
+                /*switch(lexeme.toString()){
+                    //testing purposes
                     case "UNICORN":
                         nextToken = UNICORN;
                         break;
 
                     default: //any word that is not a keyword is by default an identifier.
                         nextToken = IDENTIFIER;
-                }
+                }*/
 
+                //checks if variable name is too long (longer than 8 characters) then gives an error if it is
+                if (lexeme.length() > 8){
+                    throw new AssertionError("This variable name is too long");
+                }
+                //checks if variable name is too short (less than 6 characters) then gives an error if it is
+                else if (lexeme.length() < 6){
+                    throw new AssertionError("This variable name is too short");
+                }
                 break;
+
             //switch case that handles digits
             case DIGITS:
                 addChar();
