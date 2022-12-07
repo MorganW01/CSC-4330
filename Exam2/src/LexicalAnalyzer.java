@@ -32,28 +32,29 @@ public class LexicalAnalyzer {
     final static int GREATER_THAN = 16; // '>'
     final static int LESS_EQ = 17; // '~'
     final static int GREATER_EQ = 18; // '?'
-    final static int EQUAL = 19; // '='
+    final static int ASSIGNMENT = 19; // '='
     final static int NOT = 20; // '!'
-    final static int IDENTIFIER = 24;
-    final static int START_PROGRAM = 22; // '['
-    final static int END_PROGRAM = 23; // ']'
+    final static int EQUAL_TO = 21; //&
+    final static int IDENTIFIER = 22;
+    final static int START_PROGRAM = 23; // '['
+    final static int END_PROGRAM = 24; // ']'
     final static int INT_LIT = 25;
     final static int LEFT_PAREN = 26; // '('
     final static int RIGHT_PAREN = 27; // ')'
     final static int END_LINE = 28; // ';'
-    //create more tokens for if, else, while, etc.
-    final static int IF = 29; // '^'
-    final static int ELSE = 30; // '#'
-    final static int ELSE_IF = 31; // '@'
-    final static int WHILE = 32; // '$'
+    final static int OPEN_BLOCK = 29; // '{'
+    final static int CLOSE_BLOCK = 30; // '}'
 
-    final static int OPEN_BLOCK = 34; // '{'
-    final static int CLOSE_BLOCK = 35; // '}'
+    //created more tokens for if, else, while, etc.
+    final static int IF = 31; // '^'
+    final static int ELSE = 32; // '#'
+    final static int ELSE_IF = 33; // '@'
+    final static int WHILE = 34; // '$'
 
     //test token to represent tokens with more than one character; disregard;
-    final static int UNICORN = 33; // 'UNICORN'
+    final static int UNICORN = 35; // 'UNICORN'
 
-    //Main 'driver' method.
+    //Main method
     public static void main(String[] args) throws IOException {
         //creates file reader
         fr = new FileReader("/Users/morganwarren/Desktop/GitHub/CSC-4330/Exam2/language.txt");
@@ -219,7 +220,7 @@ public class LexicalAnalyzer {
                 break;
             case '=':
                 addChar();
-                nextToken = EQUAL;
+                nextToken = ASSIGNMENT;
                 break;
             case '!':
                 addChar();
@@ -277,6 +278,11 @@ public class LexicalAnalyzer {
                 addChar();
                 nextToken = END_PROGRAM;
                 break;
+            case '&': //equals to, not assignment. Similar to '=='
+                addChar();
+                nextToken = EQUAL_TO;
+                break;
+
             default: //handles invalid groups of characters. The assertion error terminates the program.
                 throw new AssertionError("invalid expression");
         }

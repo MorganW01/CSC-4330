@@ -22,11 +22,13 @@ Greater than '>'
 
 Greater than or equal to '?'
 
-Equal '='
+Assignment '='
 
 Integer Literal '[0-9]+'
 
 Not (Equal to) '!'
+
+Equal to '&'
 
 Start Program '['
 
@@ -37,6 +39,10 @@ Left Parenthesis '('
 Right Parenthesis ')'
 
 End Line ';'
+
+Open Block '{'
+
+Close Block '}'
 
 IF '^'
 
@@ -53,27 +59,31 @@ Addition 10
 
 Subtraction 11
 
-Division 13
-
 Multiplication 12
+
+Division 13
 
 Modulus 14
 
 Less than 15
 
-Less than or equal to 17
-
 Greater than 16
+
+Less than or equal to 17
 
 Greater than or equal to 18
 
-Equal 19
+Assignment 19
 
 Not (Equal to) 20
 
-Start Program 22
+Equals to 21
 
-End Program 23
+Identifier = 22
+
+Start Program 23
+
+End Program 24
 
 Integer Literal 25
 
@@ -83,13 +93,17 @@ Right Parenthesis 27
 
 End Line 28
 
-IF '^' 29
+Open Block 29
 
-ELSE '#' 30
+Close Block 30
 
-ELSE IF '@' 31
+IF '^' 31
 
-WHILE '$' 32
+ELSE '#' 32
+
+ELSE IF '@' 33
+
+WHILE '$' 34
 
 Variable name rules: 
 [a-zA-Z_][a-zA-Z_][a-zA-Z_][a-zA-Z_][a-zA-Z_][a-zA-Z_][a-zA-Z_]?[a-zA-Z_]?
@@ -100,52 +114,24 @@ Enforce a non PEMDAS (BODMAS) order of operation, must have at least 6 levels of
 Keywords cannot use the words while, for, do, if, int, short, long
  i. Keywords should be unique, if others share your same words, you may lose more points than this problem is worth
 You must clearly state the structure of your language with production rules
-<program> -> ‘[’<stmt_list>’]’ 
-<stmt_list> -> <stmt> ; 
-<stmt_list> -> <stmt> ; <stmt_list>
-<stmt> -> <if_stmt> 
-<stmt> -> <while_loop>
-<stmt> -> <assignment> 
-<stmt> -> <block> 
-<stmt> -> <declare> 
-<declare> -> vari id ; 
-<block> -> `{` <stmt_list> `}` 
-<if_stmt> -> $ ( <bool_expr> ) <stmt> # <stmt> 
-<if_stmt> -> $ ( <bool_expr> ) <stmt> 
-<while_loop> -> ROF ( <bool_expr> ) <stmt> 
-<assignment> -> id = <expr> ; 
-<expr> -> <expr> - <term> 
-<expr> -> <expr> + <term> 
-<expr> -> <term> 
-<term> -> <factor> {(|/|%)} <factor> 
-<factor> -> id
-factor> -> int_lit
-factor> -> <expr> 
-<bool_expr> -> <rel> {(!=|==)} <rel> 
-<rel> -> <bex> {(<|>|~|^)} <bex> 
-<bex> -> <bterm> {(|/|%)} <bterm> 
-<bterm> -> <bfactor> {(+|-)} <bfactor> 
-<bfactor> -> id|int_lit|bool_lit|(<bex>)
 
-
-<program> --> `[`<stmt_list>`]`
- <stmt_list> --> <stmt> `;` {<stmt>`;`}
- <stmt> --> <if_stmt> | <while_loop> | <assignment> |
- <block> --> `(` { <stmt> ;} `)`
- <if_stmt> --> `^` `(`<bool_expr> `)` <block> 
- <for_loop> --> `&` `(` for_expr> `)` <block>
- <for_expr> --> `int_lit` `to` `int_lit`
- <assignment> --> `id` `=` <expr> `;`
- <expr> --> <term> {(`*`|`/`|`%`) <term> }
- <term> -->  <factor> {(`+`|`-`) <factor> }
- <factor> --> `id`| `int_lit`| `(`<expr>`)`
-
- <bool_expr> --> <rel> {(`!`|`@`)} <rel>
- <rel> --> <bex> {(`<`|`>`|`~`|`^`) <bex> }
- <bex> --> <bterm> {(`*`|`/`|`%`) <bterm> }
- <bterm> --> <bfactor> {(`+`|`-`) <bfactor>}
- <bfactor> --> `id`|`int_lit`|`(`<bex>`)
-
+    <program> -> `[`<stmt_list>`]`
+    <stmt_list> -> <stmt> `;` {<stmt>`;`}
+    <stmt> -> <if_stmt> | <while_loop> | <assignment> | <else_stmt> | <elseif_stmt>
+    <block> -> `(` { <stmt> ;} `)`
+    <if_stmt> -> `^` `(`<bool_expr> `)` <block> 
+    <else_stmt> -> `#` `(`<bool_expr> `)` <block> 
+    <elseif_stmt> -> `@` `(`<bool_expr> `)` <block> 
+    <while_loop> -> `$` `(`bool_expr> `)` <block>
+    <assignment> -> `id` `=` <expr> `;`
+    <expr> -> <term> {(`*`|`/`|`%`) <term> }
+    <term> ->  <factor> {(`+`|`-`) <factor> }
+    <factor> -> `id`| `int_lit`| `(`<expr>`)`
+    <bool_expr> -> <rel> {(`!`|`=`)} <rel>
+    <rel> -> <bex> {(`<`|`>`|`~`|`?`) <bex> }
+    <bex> -> <bterm> {(`*`|`/`|`%`) <bterm> }
+    <bterm> -> <bfactor> {(`+`|`-`) <bfactor>}
+    <bfactor> -> `id`|`int_lit`|`(`<bex>`)
 c. (10 points) Show whether every rule set in your language conforms to the standard of an LL Grammar.	
 
 Pairwise disjoint grammar is the grammar for my language. This is my language’s grammar because for all my rules, there isn’t a nonterminal that has multiple rules for one terminal. Also because there are no rules that result in a left hand recursion, where a nonterminal calls itself as the first char.
