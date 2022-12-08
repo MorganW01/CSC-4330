@@ -1,13 +1,7 @@
-import java.lang.reflect.Array;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class SyntaxAnalyzer {
-
-    static int latestToken;
-    static int latest;
-    static ArrayList <Integer> tokensList = new ArrayList<>();
-
-
     final static int ADD = 10; // '+'
     final static int SUBTRACT = 11; // '-'
     final static int MULTIPLY = 12; // '*'
@@ -34,31 +28,10 @@ public class SyntaxAnalyzer {
     final static int ELSE_IF = 33; // '@'
     final static int WHILE = 34; // '$'
 
-    public static void syntaxError(){
-        System.out.println("There is a syntax error present");
-        System.exit(0);
-    }
+    static int latestToken;
+    static int latest;
 
-    /*public static void statements(){
-        switch (latestToken){
-            case WHILE:
-
-
-
-        }
-
-
-
-    }*/
-
-    public static void getTheNextToken () {
-        if (tokensList.size() > latest){
-            latest +=1;
-        }
-        latestToken = tokensList.get(latest);
-
-        System.out.println("The current token = " + latestToken);
-    }
+    static ArrayList <Integer> tokensList = new ArrayList<>();
 
     public static void assignment (){
         if (latestToken == IDENTIFIER){
@@ -70,15 +43,15 @@ public class SyntaxAnalyzer {
                     getTheNextToken();
                 }
                 else{
-                    syntaxError();
+                    returnSyntaxError();
                 }
             }
             else {
-                syntaxError();
+                returnSyntaxError();
             }
         }
         else {
-            syntaxError();
+            returnSyntaxError();
         }
     }
 
@@ -101,12 +74,12 @@ public class SyntaxAnalyzer {
                 getTheNextToken();
             }
             else{
-                syntaxError();
+                returnSyntaxError();
             }
 
         }
         else{
-            syntaxError();
+            returnSyntaxError();
         }
     }
 
@@ -115,13 +88,13 @@ public class SyntaxAnalyzer {
         if (latestToken == OPEN_BLOCK){
             getTheNextToken();
             while (latestToken == IF || latestToken == ELSE || latestToken == ELSE_IF || latestToken == WHILE || latestToken == IDENTIFIER){
-                stmt();
+                statement();
             }
             if(latestToken == CLOSE_BLOCK){
                 getTheNextToken();
             }
             else {
-                syntaxError();
+                returnSyntaxError();
             }
         }
     }
@@ -143,7 +116,7 @@ public class SyntaxAnalyzer {
         }
     }
 
-    public static void else_stmt (){
+    public static void else_statement (){
         if(latestToken == ELSE){
             getTheNextToken();
             if(latestToken == LEFT_PAREN){
@@ -155,22 +128,22 @@ public class SyntaxAnalyzer {
                         block();
                     }
                     else{
-                        syntaxError();
+                        returnSyntaxError();
                     }
                 }
 
                 else{
-                    syntaxError();
+                    returnSyntaxError();
                 }
 
             }
             else {
-                syntaxError();
+                returnSyntaxError();
             }
         }
     }
 
-    public static void elseif_stmt (){
+    public static void elseif_statement (){
         if(latestToken == ELSE_IF){
             getTheNextToken();
             if(latestToken == LEFT_PAREN){
@@ -182,17 +155,17 @@ public class SyntaxAnalyzer {
                         block();
                     }
                     else{
-                        syntaxError();
+                        returnSyntaxError();
                     }
                 }
 
                 else{
-                    syntaxError();
+                    returnSyntaxError();
                 }
 
             }
             else {
-                syntaxError();
+                returnSyntaxError();
             }
         }
     }
@@ -215,17 +188,25 @@ public class SyntaxAnalyzer {
                 getTheNextToken();
             }
             else{
-                syntaxError();
+                returnSyntaxError();
             }
         }
 
         else{
-            syntaxError();
+            returnSyntaxError();
         }
     }
 
+    public static void getTheNextToken () {
+        if (tokensList.size() > latest){
+            latest +=1;
+        }
+        latestToken = tokensList.get(latest);
 
-    public static void if_stmt (){
+        System.out.println("The current token = " + latestToken);
+    }
+
+    public static void if_statement(){
         if(latestToken == IF){
             getTheNextToken();
             if(latestToken == LEFT_PAREN){
@@ -237,17 +218,17 @@ public class SyntaxAnalyzer {
                         block();
                     }
                     else{
-                        syntaxError();
+                        returnSyntaxError();
                     }
                 }
 
                 else{
-                    syntaxError();
+                    returnSyntaxError();
                 }
 
             }
             else {
-                syntaxError();
+                returnSyntaxError();
             }
         }
 
@@ -262,11 +243,46 @@ public class SyntaxAnalyzer {
         }
     }
 
-    public static void stmt (){
+    public static void returnSyntaxError(){
+        System.out.println("There is a syntax error present");
+        System.exit(0);
+    }
 
+    public static void statement(){
+        switch (latestToken){
+            case ELSE:
+                else_statement();
+                break;
+            case ELSE_IF:
+                elseif_statement();
+                break;
+            case IF:
+                if_statement();
+                break;
+            case WHILE:
+                while_loop();
+                break;
 
+            case IDENTIFIER:
+                assignment();
+                break;
 
+            case OPEN_BLOCK:
+                block();
 
+            default:
+                returnSyntaxError();
+        }
+    }
+
+    public static void statement_list(){
+        System.out.println("Inside stmt_list()");
+        statement();
+        System.out.println("In while loop");
+        while(latestToken == IF || latestToken == WHILE || latestToken == ELSE || latestToken == ELSE_IF || latestToken == IDENTIFIER || latestToken == OPEN_BLOCK){
+            System.out.println("In 2nd while loop");
+            statement();
+        }
     }
 
 
@@ -292,37 +308,41 @@ public class SyntaxAnalyzer {
                         block();
                     }
                     else{
-                        syntaxError();
+                        returnSyntaxError();
                     }
                 }
 
                 else{
-                    syntaxError();
+                    returnSyntaxError();
                 }
 
             }
             else {
-                syntaxError();
+                returnSyntaxError();
             }
         }
 
     }
 
-
-
-
-    }
-
     public static void main (String [] args) {
+        LexicalAnalyzer lexicalAnalyzer = new LexicalAnalyzer();
+        tokensList = LexicalAnalyzer.tokensList;
+        latestToken = tokensList.get(latest);
 
+        if(latest == START_PROGRAM){
+            getTheNextToken();
+            statement_list();
 
+            if (latestToken == END_PROGRAM){
+                System.out.println("No syntax errors!");
+            }
+            else{
+                returnSyntaxError();
+            }
+        }
 
-
-
+        else {
+            returnSyntaxError();
+        }
     }
-
-
-
-
-
 }
