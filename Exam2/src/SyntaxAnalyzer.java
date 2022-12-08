@@ -281,6 +281,32 @@ public class SyntaxAnalyzer {
 
 
     public static void while_loop (){
+        if(latestToken == WHILE){
+            getTheNextToken();
+            if(latestToken == LEFT_PAREN){
+                getTheNextToken();
+                bool_expr();
+                if(latestToken == RIGHT_PAREN){
+                    getTheNextToken();
+                    if (latestToken == OPEN_BLOCK){
+                        block();
+                    }
+                    else{
+                        syntaxError();
+                    }
+                }
+
+                else{
+                    syntaxError();
+                }
+
+            }
+            else {
+                syntaxError();
+            }
+        }
+
+    }
 
 
 
