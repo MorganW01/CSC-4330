@@ -91,10 +91,23 @@ public class SyntaxAnalyzer {
     }
 
     public static void bfactor (){
+        if(latestToken == IDENTIFIER || latestToken == INT_LIT){
+            getTheNextToken();
+        }
+        else if(latestToken == LEFT_PAREN){
+            getTheNextToken();
+            bex();
+            if(latestToken ==RIGHT_PAREN){
+                getTheNextToken();
+            }
+            else{
+                syntaxError();
+            }
 
-
-
-
+        }
+        else{
+            syntaxError();
+        }
     }
 
 
@@ -173,6 +186,10 @@ public class SyntaxAnalyzer {
 
 
     public static void if_stmt (){
+        if(latestToken==IF){
+
+            
+        }
 
 
 
