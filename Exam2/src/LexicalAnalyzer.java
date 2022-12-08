@@ -41,7 +41,7 @@ public class LexicalAnalyzer {
     final static int INT_LIT = 25;
     final static int LEFT_PAREN = 26; // '('
     final static int RIGHT_PAREN = 27; // ')'
-    final static int END_LINE = 28; // ';'
+    final static int END_STATEMENT = 28; // ';'
     final static int OPEN_BLOCK = 29; // '{'
     final static int CLOSE_BLOCK = 30; // '}'
 
@@ -118,11 +118,6 @@ public class LexicalAnalyzer {
                 }
 
                 switch(lexeme.toString()){
-                    //testing purposes
-                    case "UNICORN":
-                        nextToken = UNICORN;
-                        break;
-
                     default: //any word that is not a keyword is by default an identifier.
                         nextToken = IDENTIFIER;
                 }
@@ -240,7 +235,7 @@ public class LexicalAnalyzer {
                 break;
             case ';':
                 addChar();
-                nextToken = END_LINE;
+                nextToken = END_STATEMENT;
                 break;
             case '~': //less than or equal to
                 addChar();
