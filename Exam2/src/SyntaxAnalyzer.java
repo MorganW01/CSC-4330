@@ -144,17 +144,57 @@ public class SyntaxAnalyzer {
     }
 
     public static void else_stmt (){
+        if(latestToken == ELSE){
+            getTheNextToken();
+            if(latestToken == LEFT_PAREN){
+                getTheNextToken();
+                bool_expr();
+                if(latestToken == RIGHT_PAREN){
+                    getTheNextToken();
+                    if (latestToken == OPEN_BLOCK){
+                        block();
+                    }
+                    else{
+                        syntaxError();
+                    }
+                }
 
+                else{
+                    syntaxError();
+                }
 
-
-
+            }
+            else {
+                syntaxError();
+            }
+        }
     }
 
     public static void elseif_stmt (){
+        if(latestToken == ELSE_IF){
+            getTheNextToken();
+            if(latestToken == LEFT_PAREN){
+                getTheNextToken();
+                bool_expr();
+                if(latestToken == RIGHT_PAREN){
+                    getTheNextToken();
+                    if (latestToken == OPEN_BLOCK){
+                        block();
+                    }
+                    else{
+                        syntaxError();
+                    }
+                }
 
+                else{
+                    syntaxError();
+                }
 
-
-
+            }
+            else {
+                syntaxError();
+            }
+        }
     }
 
     public static void expr (){
@@ -210,7 +250,7 @@ public class SyntaxAnalyzer {
                 syntaxError();
             }
         }
-        
+
     }
 
 
