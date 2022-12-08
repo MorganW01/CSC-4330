@@ -1,1 +1,9 @@
-[a android = 22;]
+[ apples = 10;
+  imagine = 5;
+  trucks = imagine + apples;
+
+  ^ (trucks & 15) {
+  imagine = imagine - 2;
+
+  }
+]

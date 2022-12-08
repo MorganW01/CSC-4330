@@ -1,4 +1,4 @@
-import java.sql.SQLOutput;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SyntaxAnalyzer {
@@ -270,17 +270,20 @@ public class SyntaxAnalyzer {
             case OPEN_BLOCK:
                 block();
 
+            case START_PROGRAM:
+                statement();
+
             default:
                 returnSyntaxError();
         }
     }
 
     public static void statement_list(){
-        System.out.println("Inside stmt_list()");
+        System.out.println("currently inside statement_list() method");
         statement();
-        System.out.println("In while loop");
+        System.out.println("currently in while loop");
         while(latestToken == IF || latestToken == WHILE || latestToken == ELSE || latestToken == ELSE_IF || latestToken == IDENTIFIER || latestToken == OPEN_BLOCK){
-            System.out.println("In 2nd while loop");
+            System.out.println("currently in 2nd while loop");
             statement();
         }
     }
@@ -324,12 +327,13 @@ public class SyntaxAnalyzer {
 
     }
 
-    public static void main (String [] args) {
+    public static void main (String [] args) throws IOException {
         LexicalAnalyzer lexicalAnalyzer = new LexicalAnalyzer();
+        LexicalAnalyzer.main(null);
         tokensList = LexicalAnalyzer.tokensList;
         latestToken = tokensList.get(latest);
 
-        if(latest == START_PROGRAM){
+        if(latestToken == START_PROGRAM){
             getTheNextToken();
             statement_list();
 

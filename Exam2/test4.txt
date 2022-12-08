@@ -1,5 +1,9 @@
-[num_int station = 3;
+[ disney = 40;
+  unicorn = 16;
+  eraser = unicorn - disney;
 
-^ station
+  $ (eraser < 15) {
+        answer = correct;
 
+  }
 ]

@@ -153,9 +153,13 @@ SyntaxAnalyzer.java
  						
 g. (10 points) Create 4 test files that have different names where each should have 30 or more lexemes that can be converted into tokens
 
+*NOTE: the contents of each file can be copied into language.txt for testing purposes.*
+
 1 with a at least 5 lexical errors based on the rules you defined
-Detail each error and say why it doe not work
-test1.txt
+
+Detail each error and say why it does not work
+
+    test1.txt
 
 Errors: 
 1. variable name 'apple' is too short. This would be the first error the lexical analyzer catches and it will end the program
@@ -166,18 +170,19 @@ Errors:
 
 1 with at least 5 syntax errors based on the rules you defined.
 Detail each error and say why it does not work
-test2.txt
+
+    test2.txt
 
 Errors:
-1.
-2.
-3.
-4.
-5.
+1. no semicolon after statement 'imagine apple = 5'
+2. no close brace '}' for end of block
+3. no close bracket ']' for end of program
+4. 'numsix++' is incorrect, operands cannot follow one another, my language doesn't add that way
+5. no semicolon after 'imagine = -5'
 
 2 with no errors at all based on the language you created
 	
-test3.txt and test4.txt
+    test3.txt and test4.txt are correct and have no errors
 
 
 h. (20 points) Create a LR (1) parse table for your language. And show the trace of 4 code samples. Each must have 6 or more tokens.				

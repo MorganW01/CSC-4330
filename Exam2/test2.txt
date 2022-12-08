@@ -1,1 +1,8 @@
-syntax error file
+[imagine apple = 5
+ 
+ ^ (imagine & 5) {
+        newint numsix = 6;
+        numsix++;
+        imagine = -5
+    
+ 

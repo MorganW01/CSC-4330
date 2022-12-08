@@ -1,1 +1,9 @@
-[number apples = 7;]
+[ disney = 40;
+  unicorn = 16;
+  eraser = unicorn - disney;
+
+  $ (eraser < 15) {
+        answer = correct;
+
+  }
+]
