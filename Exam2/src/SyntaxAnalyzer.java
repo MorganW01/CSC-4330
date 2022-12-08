@@ -186,14 +186,31 @@ public class SyntaxAnalyzer {
 
 
     public static void if_stmt (){
-        if(latestToken==IF){
+        if(latestToken == IF){
+            getTheNextToken();
+            if(latestToken == LEFT_PAREN){
+                getTheNextToken();
+                bool_expr();
+                if(latestToken == RIGHT_PAREN){
+                    getTheNextToken();
+                    if (latestToken == OPEN_BLOCK){
+                        block();
+                    }
+                    else{
+                        syntaxError();
+                    }
+                }
 
-            
+                else{
+                    syntaxError();
+                }
+
+            }
+            else {
+                syntaxError();
+            }
         }
-
-
-
-
+        
     }
 
 
